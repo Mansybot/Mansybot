@@ -3,62 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Sederhana</title>
+    <title>Website Profesional</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link ke file CSS jika ada -->
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
         }
         header {
             background: #4CAF50;
             color: white;
-            padding: 10px 0;
+            padding: 20px 0;
             text-align: center;
         }
         nav {
             margin: 15px 0;
         }
         nav a {
-            margin: 0 15px;
-            color: #4CAF50;
+            margin: 0 20px;
+            color: white;
             text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
         }
         .content {
             padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h2 {
+            color: #4CAF50;
         }
         footer {
             text-align: center;
             margin-top: 20px;
-            padding: 10px 0;
+            padding: 15px 0;
             background: #4CAF50;
             color: white;
+        }
+        .contact-form {
+            margin-top: 20px;
+        }
+        .contact-form input, 
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #45a049;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #dff0d8;
+            color: #3c763d;
+            border: 1px solid #d6e9c6;
+            border-radius: 5px;
+            display: none; /* Sembunyikan pesan awalnya */
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Selamat Datang di Website Saya</h1>
+    <h1>Selamat Datang di Website Profesional Saya</h1>
     <nav>
         <a href="#about">Tentang</a>
+        <a href="#services">Layanan</a>
         <a href="#contact">Kontak</a>
     </nav>
 </header>
 
 <div class="content">
     <h2 id="about">Tentang Website</h2>
-    <p>Ini adalah contoh website sederhana yang dibuat menggunakan HTML dan CSS.</p>
+    <p>Ini adalah contoh website profesional yang dibuat menggunakan HTML dan CSS. Website ini dirancang untuk memberikan informasi dan layanan kepada pengunjung.</p>
+    <img src="https://via.placeholder.com/800x300" alt="Gambar Contoh" style="width: 100%; border-radius: 5px;">
 
-    <h2 id="contact">Kontak</h2>
-    <p>Email: contoh@email.com</p>
+    <h2 id="services">Layanan Kami</h2>
+    <table class="table">
+        <tr>
+            <th>Layanan</th>
+            <th>Deskripsi</th>
+        </tr>
+        <tr>
+            <td>Desain Web</td>
+            <td>Membuat desain website yang menarik dan responsif.</td>
+        </tr>
+        <tr>
+            <td>Pengembangan Aplikasi</td>
+            <td>Pengembangan aplikasi web dan mobile untuk kebutuhan bisnis.</td>
+        </tr>
+        <tr>
+            <td>Konsultasi IT</td>
+            <td>Memberikan saran dan solusi teknologi informasi untuk perusahaan.</td>
+        </tr>
+    </table>
+
+    <h2 id="contact">Kontak Kami</h2>
+    <form class="contact-form" id="contactForm">
+        <input type="text" id="name" placeholder="Nama" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <textarea id="message" placeholder="Pesan" rows="5" required></textarea>
+        <button type="submit">Kirim Pesan</button>
+    </form>
+    <div class="message" id="responseMessage"></div>
 </div>
 
 <footer>
-    <p>&copy; 2024 Website Saya</p>
+    <p>&copy; 2024 Website Profesional Saya | Semua Hak Dilindungi</p>
 </footer>
+
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Mencegah pengiriman form standar
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        // Validasi sederhana
+        if (name && email && message) {
+            // Tampilkan pesan sukses
+            const responseMessage = document.getElementById('responseMessage');
+            responseMessage.textContent = 'Pesan Anda telah terkirim! Terima kasih, ' + name + '.';
+            responseMessage.style.display = 'block';
+
+            // Kosongkan form setelah pengiriman
+            document.getElementById('contactForm').reset();
+        } else {
+            alert('Silakan lengkapi semua kolom.');
+        }
+    });
+</script>
 
 </body>
 </html>
-              

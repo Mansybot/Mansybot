@@ -1,0 +1,509 @@
+/* Theme Variables */
+:root {
+    --amoled-black: #000000;
+    --amoled-gray: #121212;
+    --amoled-light-gray: #1f1f1f;
+    --amoled-accent: #00fff5;
+    --amoled-danger: #ff0033;
+    --amoled-success: #00ff66;
+    --amoled-text: #ffffff;
+}
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: var(--amoled-black);
+    color: var(--amoled-text);
+    line-height: 1.6;
+}
+
+/* DateTime Display */
+.datetime-info {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--amoled-gray);
+    color: var(--amoled-text);
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    z-index: 1002;
+    box-shadow: 0 2px 10px rgba(0, 255, 245, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 255, 245, 0.1);
+}
+
+.datetime-info span {
+    color: var(--amoled-accent);
+    font-weight: bold;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1001;
+    top: 0;
+    left: 0;
+    background: var(--amoled-black);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    box-shadow: 2px 0 10px rgba(0, 255, 245, 0.1);
+}
+
+/* Profile Section */
+.sidebar-profile {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--amoled-gray);
+    margin-bottom: 20px;
+}
+
+.profile-upload {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--amoled-accent);
+    transition: transform 0.3s ease;
+    background: var(--amoled-gray);
+}
+
+.profile-upload:hover .profile-image {
+    transform: scale(1.05);
+}
+
+.upload-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    cursor: pointer;
+}
+
+.profile-upload:hover .upload-overlay {
+    opacity: 1;
+}
+
+.profile-upload input[type="file"] {
+    display: none;
+}
+
+.upload-icon {
+    color: var(--amoled-accent);
+    font-size: 24px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.profile-name {
+    color: var(--amoled-text);
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.profile-title {
+    color: var(--amoled-accent);
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Sidebar Links */
+.sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: var(--amoled-text);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s;
+    border-left: 4px solid transparent;
+}
+
+.sidebar a:hover, .sidebar a.active {
+    background: var(--amoled-gray);
+    color: var(--amoled-accent);
+    border-left-color: var(--amoled-accent);
+}
+
+.sidebar .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--amoled-text);
+    transition: color 0.3s;
+}
+
+.sidebar .close-btn:hover {
+    color: var(--amoled-accent);
+}
+
+/* Menu Button */
+.menu-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: var(--amoled-gray);
+    border: none;
+    color: var(--amoled-text);
+    padding: 12px 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 10px rgba(0, 255, 245, 0.1);
+    border: 1px solid rgba(0, 255, 245, 0.1);
+}
+
+.menu-btn:hover {
+    background: var(--amoled-light-gray);
+    color: var(--amoled-accent);
+    transform: translateY(-2px);
+}
+
+/* Main Content */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+/* Content Sections */
+section {
+    display: none;
+    padding: 80px 20px 20px;
+    min-height: 100vh;
+    animation: fadeIn 0.5s ease;
+}
+
+section.active {
+    display: block;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Cards Grid */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 30px 0;
+}
+
+.card {
+    background: var(--amoled-gray);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 255, 245, 0.1);
+    transition: transform 0.3s ease;
+    position: relative;
+    border: 1px solid rgba(0, 255, 245, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+/* Action Buttons */
+.action-buttons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 2;
+}
+
+.action-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    background: var(--amoled-gray);
+    border: 1px solid rgba(0, 255, 245, 0.1);
+}
+
+.delete-btn {
+    color: var(--amoled-danger);
+}
+
+.delete-btn:hover {
+    background: var(--amoled-danger);
+    color: var(--amoled-text);
+}
+
+.download-btn {
+    color: var(--amoled-success);
+}
+
+.download-btn:hover {
+    background: var(--amoled-success);
+    color: var(--amoled-text);
+}
+
+/* Forms */
+.admin-panel {
+    background: var(--amoled-gray);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 255, 245, 0.1);
+    border: 1px solid rgba(0, 255, 245, 0.1);
+}
+
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--amoled-light-gray);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 245, 0.1);
+}
+
+.admin-form {
+    background: var(--amoled-light-gray);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(0, 255, 245, 0.1);
+}
+
+/* Form Elements */
+input, textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--amoled-black);
+    border: 1px solid var(--amoled-gray);
+    border-radius: 8px;
+    color: var(--amoled-text);
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--amoled-accent);
+    box-shadow: 0 0 10px rgba(0, 255, 245, 0.2);
+}
+
+/* Buttons */
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--amoled-accent);
+    color: var(--amoled-black);
+}
+
+.btn-primary:hover {
+    background: var(--amoled-text);
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: var(--amoled-danger);
+    color: var(--amoled-text);
+}
+
+.btn-danger:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1001;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: var(--amoled-gray);
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    color: var(--amoled-text);
+    box-shadow: 0 0 30px rgba(0, 255, 245, 0.1);
+    border: 1px solid rgba(0, 255, 245, 0.1);
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: flex-end;
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    bottom: 30px;
+    right: -400px;
+    background: var(--amoled-gray);
+    color: var(--amoled-text);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 255, 245, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 1002;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 255, 245, 0.1);
+    width: 300px;
+}
+
+.notification.show {
+    right: 30px;
+}
+
+.notification-icon {
+    font-size: 24px;
+    min-width: 24px;
+}
+
+.notification-content {
+    flex-grow: 1;
+}
+
+.notification-title {
+    color: var(--amoled-accent);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.notification-message {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Stats Cards */
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--amoled-light-gray);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid rgba(0, 255, 245, 0.1);
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    color: var(--amoled-accent);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--amoled-text);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .datetime-info {
+        display: none;
+    }
+    
+    .sidebar {
+        padding-top: 50px;
+    }
+    
+    .sidebar a {
+        padding: 10px 20px;
+    }
+    
+    .notification {
+        width: calc(100% - 40px);
+        bottom: 20px;
+        right: -100%;
+    }
+    
+    .notification.show {
+        right: 20px;
+    }
+}
